@@ -58,6 +58,21 @@
   color: #fff;
 }
 
+.alternance-card {
+  margin-top: 1rem;
+  padding: 2rem;
+  background-color: var(--color-glassy-bg);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+  max-width: 700px;
+  margin-inline: auto;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-text-light);
+}
+
 
 
 }
