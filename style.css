@@ -73,11 +73,12 @@
   color: var(--color-text-light);
 }
 
-.download-btn:hover {
-  background-color: #fff;
-  transform: translateY(-2px);
-  color: var(--color-secondary);
+
+.social-btn i {
+  margin-right: 0.5rem;
 }
+
+
 
 /* Centrage sur mobile */
 @media (max-width: 768px) {
