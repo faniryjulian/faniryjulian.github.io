@@ -76,9 +76,10 @@
 .doc-buttons {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 1rem;
-  padding: 2rem;
-  text-align: center;
+  padding: 1rem;
+  align-items: flex-start;
 }
 
 .download-btn {
@@ -90,12 +91,20 @@
   text-decoration: none;
   transition: transform 0.3s ease, background-color 0.3s ease;
   display: inline-block;
+  box-shadow: var(--shadow);
 }
 
 .download-btn:hover {
   background-color: #fff;
   transform: translateY(-2px);
   color: var(--color-secondary);
+}
+
+/* Centrage sur mobile */
+@media (max-width: 768px) {
+  .doc-buttons {
+    align-items: center;
+  }
 }
 
 
