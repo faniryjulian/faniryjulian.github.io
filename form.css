@@ -1,0 +1,142 @@
+.glass-form {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    margin-top: 2rem;
+  }
+
+  .glass-form input,
+  .glass-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFD700;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .glass-form textarea {
+    width: 100%;
+    max-width: auto;
+    min-width: auto;
+  }
+
+  .inline-inputs {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .inline-inputs input {
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  .glass-form input::placeholder,
+  .glass-form textarea::placeholder {
+    color: #ccc;
+  }
+
+  .glass-form input[type="submit"] {
+    background-color: #FFD700;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .glass-form input[type="submit"]:hover {
+    background-color: #8A2E2E;
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .inline-inputs {
+      flex-direction: column;
+    }
+  }
+
+  .rgpd-wrapper {
+    margin: 1.5rem 0;
+  }
+  
+  .rgpd {
+    display: grid; /* ✅ on utilise grid au lieu de flex */
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    color: #ccc;
+    line-height: 1.4;
+  }
+  
+  .rgpd input[type="checkbox"] {
+    margin-top: 4px;
+    transform: scale(1.1);
+  }
+  
+  .rgpd span {
+    display: block;
+  }
+  
+  .rgpd a {
+    color: #FFD700;
+    text-decoration: underline;
+  }
+  
+  .rgpd a:hover {
+    color: #fff;
+  }
+  
+  
+
+/*formulaire succès*/
+
+.form-success {
+  display: none;
+  text-align: center;
+  background-color: #1f1f1f;
+  color: #FFD700;
+  padding: 1rem;
+  border: 2px solid #FFD700;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.form-success.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.form-loader {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-loader.show {
+  display: flex;
+}
+
+.form-loader i {
+  color: #FFD700;
+  font-size: 2.5rem;
+}
