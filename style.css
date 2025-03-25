@@ -73,27 +73,6 @@
   color: var(--color-text-light);
 }
 
-.doc-buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
-  align-items: flex-start;
-}
-
-.download-btn {
-  background-color: var(--color-primary);
-  color: #000;
-  padding: 0.8rem 1.2rem;
-  border-radius: var(--radius);
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  display: inline-block;
-  box-shadow: var(--shadow);
-}
-
 .download-btn:hover {
   background-color: #fff;
   transform: translateY(-2px);
