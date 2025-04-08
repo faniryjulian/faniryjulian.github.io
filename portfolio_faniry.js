@@ -157,32 +157,29 @@ form.addEventListener('submit', function (e) {
 
 //pdf-slider
 
-document.addEventListener('DOMContentLoaded', function () {
-  // ... tout ton script ici ...
+document.addEventListener("DOMContentLoaded", function () {
+  const totalPages = 60; // ✅ mis à jour ici
+  const track = document.getElementById('slider-track');
+  let currentIndex = 0;
 
-  const totalPages = 60;
-const track = document.getElementById('slider-track');
-let currentIndex = 0;
+  for (let i = 1; i <= totalPages; i++) {
+    const img = document.createElement('img');
+    img.src = `assets/pdf-slider/page${i}.png`;
+    img.alt = `Page ${i}`;
+    img.loading = 'lazy';
+    track.appendChild(img);
+  }
 
-// Générer les images
-for (let i = 1; i <= totalPages; i++) {
-  const img = document.createElement('img');
-  img.src = `assets/pdf-slider/page${i}.png`;
-  img.alt = `Page ${i}`;
-  img.loading = 'lazy';
-  track.appendChild(img);
-}
+  window.slide = function (direction) {
+    const slides = document.querySelectorAll('#slider-track img');
+    const slideWidth = slides[0].clientWidth;
 
-function slide(direction) {
-  const slides = document.querySelectorAll('#slider-track img');
-  const slideWidth = slides[0].clientWidth;
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = 0;
+    if (currentIndex >= slides.length) currentIndex = slides.length - 1;
 
-  currentIndex += direction;
-
-  if (currentIndex < 0) currentIndex = 0;
-  if (currentIndex >= slides.length) currentIndex = slides.length - 1;
-
-  track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
-}
-
+    track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+  };
 });
+
+
