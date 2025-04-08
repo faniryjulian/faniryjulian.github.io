@@ -292,6 +292,16 @@
     </div>
     <input type="email" name="email" placeholder="Votre email" required>
     <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+
+  <!-- CAPTCHA mathématique -->
+  <div class="captcha-wrapper">
+    <label id="captchaLabel">
+      Combien font <span id="a"></span> + <span id="b"></span> ?
+    </label>
+    <input type="number" id="captchaAnswer" name="captchaAnswer" placeholder="Réponse" required>
+    <input type="hidden" id="captchaExpected" name="captchaExpected">
+  </div>
+
     <div class="rgpd-wrapper">
       <label class="rgpd">
         <input type="checkbox" name="rgpd" required>
