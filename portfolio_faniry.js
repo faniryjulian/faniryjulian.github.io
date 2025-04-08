@@ -166,11 +166,12 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", () => {
   const totalPages = 60;
   const track = document.getElementById("slider-track");
-  const input = document.getElementById("pageInput");
-  const goBtn = document.getElementById("goToPage");
+  const inputMobile = document.getElementById("pageInput");
+  const inputDesktop = document.getElementById("pageInputDesktop");
+  const goBtnMobile = document.getElementById("goToPage");
   let currentIndex = 0;
 
-  // Crée les images
+  // Génère les images
   for (let i = 1; i <= totalPages; i++) {
     const img = document.createElement("img");
     img.src = `assets/pdf-slider/page${i}.png`;
@@ -194,6 +195,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const width = slides[0].clientWidth;
       track.style.transform = `translateX(-${currentIndex * width}px)`;
     }
+
+    if (inputDesktop) inputDesktop.value = currentIndex + 1;
   }
 
   window.changeSlide = function (direction) {
@@ -203,10 +206,15 @@ document.addEventListener("DOMContentLoaded", () => {
     goToPage(currentIndex);
   };
 
-  goBtn.addEventListener("click", () => {
-    const value = parseInt(input.value, 10);
+  goBtnMobile?.addEventListener("click", () => {
+    const value = parseInt(inputMobile.value, 10);
     if (!isNaN(value)) goToPage(value - 1);
   });
+
+  window.goToPageFromDesktop = function () {
+    const value = parseInt(inputDesktop.value, 10);
+    if (!isNaN(value)) goToPage(value - 1);
+  };
 
   window.addEventListener("resize", () => {
     goToPage(currentIndex);
@@ -214,5 +222,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   goToPage(currentIndex);
 });
-
-

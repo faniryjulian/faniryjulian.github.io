@@ -47,24 +47,30 @@
 <section id="simple-slider">
     <div class="slider-container">
       <div class="slider-track" id="slider-track"></div>
+  
+      <!-- Flèches desktop -->
       <div class="slider-controls">
         <button class="nav-btn prev" onclick="changeSlide(-1)">←</button>
         <button class="nav-btn next" onclick="changeSlide(1)">→</button>
       </div>
-      <div class="pagination">
-        <label for="pageInput">Aller à la page :</label>
-        <input type="number" id="pageInput" min="1" max="60" value="1">
-        <button onclick="goToPageInput()">OK</button>
-      </div>
-      <!-- Champ sticky pour mobile -->
-<div class="page-input-mobile" id="pageInputWrapper">
-    <label for="pageInput">Page :</label>
-    <input type="number" id="pageInput" min="1" max="60" placeholder="1">
-    <button onclick="goToPageInput()">OK</button>
-  </div>
   
+      <!-- Paginateur desktop -->
+      <div class="pagination-desktop">
+        <label for="pageInputDesktop">Page :</label>
+        <input type="number" id="pageInputDesktop" min="1" max="60" value="1">
+        <button onclick="goToPageFromDesktop()">OK</button>
+      </div>
+    </div>
+  
+    <!-- Paginateur mobile sticky -->
+    <div class="page-input-mobile">
+      <label for="pageInput">Page :</label>
+      <input type="number" id="pageInput" min="1" max="60">
+      <button id="goToPage">OK</button>
     </div>
   </section>
+  
+  
   
   
 

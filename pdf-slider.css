@@ -110,3 +110,65 @@
     }
   }
   
+  /* Pagination Desktop */
+.pagination-desktop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: gold;
+  }
+  
+  .pagination-desktop input {
+    width: 60px;
+    padding: 5px;
+    border: 2px solid gold;
+    border-radius: 5px;
+    background: #111;
+    color: white;
+    text-align: center;
+  }
+  
+  .pagination-desktop button {
+    padding: 5px 10px;
+    background: gold;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pagination-desktop button:hover {
+    background: #ffc400;
+  }
+  
+  @media (max-width: 768px) {
+    .pagination-desktop {
+      display: none;
+    }
+  
+    .nav-btn {
+      display: none;
+    }
+  
+    .slider-container {
+      max-height: 90vh;
+      overflow-y: scroll;
+    }
+  
+    .slider-track {
+      display: block;
+      transform: none !important;
+      transition: none;
+    }
+  
+    .slider-track img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+  }
+  
