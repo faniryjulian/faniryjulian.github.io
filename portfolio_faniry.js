@@ -166,9 +166,11 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", () => {
   const totalPages = 60;
   const track = document.getElementById("slider-track");
+  const input = document.getElementById("pageInput");
+  const goBtn = document.getElementById("goToPage");
   let currentIndex = 0;
 
-  // Génère dynamiquement les images
+  // Crée les images
   for (let i = 1; i <= totalPages; i++) {
     const img = document.createElement("img");
     img.src = `assets/pdf-slider/page${i}.png`;
@@ -178,40 +180,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const slides = track.querySelectorAll("img");
 
-  function updateSlider() {
-    const width = slides[0].clientWidth;
-    track.style.transform = `translateX(-${currentIndex * width}px)`;
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  function goToPage(index) {
+    if (index < 0 || index >= totalPages) return;
+    currentIndex = index;
+
+    if (isMobile()) {
+      slides[currentIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      const width = slides[0].clientWidth;
+      track.style.transform = `translateX(-${currentIndex * width}px)`;
+    }
   }
 
   window.changeSlide = function (direction) {
     currentIndex += direction;
     if (currentIndex < 0) currentIndex = totalPages - 1;
     if (currentIndex >= totalPages) currentIndex = 0;
-    updateSlider();
+    goToPage(currentIndex);
   };
 
-  window.goToPageInput = function () {
-    const input = document.getElementById("pageInput");
-    const page = parseInt(input.value);
-
-    if (isNaN(page) || page < 1 || page > totalPages) {
-      alert(`Merci d’entrer un numéro entre 1 et ${totalPages}`);
-      return;
-    }
-
-    currentIndex = page - 1;
-    updateSlider();
-  };
-
-  // Appuyer sur Entrée fonctionne aussi
-  document.getElementById("pageInput")?.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") {
-      goToPageInput();
-    }
+  goBtn.addEventListener("click", () => {
+    const value = parseInt(input.value, 10);
+    if (!isNaN(value)) goToPage(value - 1);
   });
 
-  window.addEventListener("resize", updateSlider);
-  updateSlider();
+  window.addEventListener("resize", () => {
+    goToPage(currentIndex);
+  });
+
+  goToPage(currentIndex);
 });
 
 

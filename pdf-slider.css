@@ -38,32 +38,8 @@
   .nav-btn.prev { left: 10px; }
   .nav-btn.next { right: 10px; }
   
-  .pagination {
-    margin-top: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px;
-  }
-  .pagination button {
-    background: rgba(255, 215, 0, 0.7);
-    border: none;
-    padding: 5px 10px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .pagination button.active {
-    background: #ffd700;
-    color: black;
-  }
-  .pagination button:hover {
-    background: #ffc400;
-  }
-
-  /* === Champ sticky pour mobile : "Aller à la page" === */
-.page-input-mobile {
+  /* === Champ sticky pour mobile === */
+  .page-input-mobile {
     position: fixed;
     bottom: 1rem;
     left: 50%;
@@ -107,44 +83,30 @@
     background: #ffc400;
   }
   
-  /* 🛑 Affiché uniquement sur mobile */
+  /* === Desktop only === */
   @media (min-width: 769px) {
     .page-input-mobile {
       display: none;
     }
   }
   
+  /* === Mobile : cacher flèches, scroll vertical === */
   @media (max-width: 768px) {
-    .slider-container {
-      max-height: 90vh;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      -webkit-overflow-scrolling: touch;
-      scroll-behavior: smooth;
+    .nav-btn {
+      display: none;
     }
   
     .slider-track {
       display: block;
-      transform: none !important;
-      transition: none !important;
+      overflow-y: auto;
+      max-height: 80vh;
     }
   
     .slider-track img {
       width: 100%;
-      height: auto;
-      max-height: unset;
+      max-height: 75vh;
       margin-bottom: 1rem;
-    }
-  
-    .pagination {
-      display: none;
-    }
-  }
-  
-  
-  @media (max-width: 768px) {
-    .nav-btn {
-      display: none !important;
+      object-fit: contain;
     }
   }
   
