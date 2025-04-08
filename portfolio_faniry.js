@@ -232,3 +232,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// Plein écran sur tout le slider
+const fullscreenBtn = document.getElementById('fullscreenBtn');
+if (fullscreenBtn) {
+  fullscreenBtn.addEventListener("click", () => {
+    const container = document.getElementById('pdf-slider');
+    if (!container) return;
+
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      if (container.requestFullscreen) container.requestFullscreen();
+      else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
+      else if (container.msRequestFullscreen) container.msRequestFullscreen();
+    }
+  });
+}
+
+
