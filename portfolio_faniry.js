@@ -169,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputMobile = document.getElementById("pageInput");
   const inputDesktop = document.getElementById("pageInputDesktop");
   const goBtnMobile = document.getElementById("goToPage");
+  const pageIndicator = document.getElementById("page-indicator");
   let currentIndex = 0;
 
   // Génère les images
@@ -180,18 +181,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const slides = track.querySelectorAll("img");
-  const pageIndicator = document.getElementById("page-indicator");
-
 
   function isMobile() {
     return window.innerWidth <= 768;
   }
 
-  function goToPage(index) {
+  function updateIndicator() {
     if (pageIndicator) {
       pageIndicator.textContent = `Page ${currentIndex + 1} / ${totalPages}`;
     }
-    
+  }
+
+  function goToPage(index) {
     if (index < 0 || index >= totalPages) return;
     currentIndex = index;
 
@@ -203,6 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (inputDesktop) inputDesktop.value = currentIndex + 1;
+    updateIndicator();
   }
 
   window.changeSlide = function (direction) {
@@ -226,26 +228,26 @@ document.addEventListener("DOMContentLoaded", () => {
     goToPage(currentIndex);
   });
 
+  // Active l'observation des images visibles (mobile)
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = [...slides].indexOf(entry.target);
+          if (index !== -1) {
+            currentIndex = index;
+            updateIndicator();
+          }
+        }
+      });
+    }, {
+      threshold: 0.6
+    });
+
+    slides.forEach(img => observer.observe(img));
+  }
+
+  // Affiche la première page
   goToPage(currentIndex);
 });
 
-// Détecte la page visible au scroll (mobile)
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const index = [...slides].indexOf(entry.target);
-        if (index !== -1) {
-          currentIndex = index;
-          if (pageIndicator) {
-            pageIndicator.textContent = `Page ${currentIndex + 1} / ${totalPages}`;
-          }
-        }
-      }
-    });
-  }, {
-    threshold: 0.6
-  });
-
-  slides.forEach(img => observer.observe(img));
-}
