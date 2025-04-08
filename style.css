@@ -8,6 +8,7 @@
 @import url(about_card.css);
 @import url(language_skills.css);
 @import url(card_confidentialite.css);
+@import url(pdf-slider.css);
 :root {
   /* Couleurs */
   --color-primary: #FFD700;

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Faniry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+  <header class="header">
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="main-nav">
+      <a href="#about">À propos</a>
+      <a href="#projects">Projets</a>
+      <a href="#skills">Compétences</a>
+      <a href="#contact" class="contact-btn">Me Contacter</a>
+    </nav>
+  </header>
+
+
+
+<div class="title_page">
+  <h1>Sprint UX</h1>
+  <h2>Refonte de Netflix</h2>
+  <div class="smoke-effect"></div>
+
+  <div class="scroll-down">
+   <a href="#about">
+    <span>
+      <h3>Scrollez vers le bas</h3>
+      ▼
+    </span>
+   </a>
+  </div>
+  
+</div>
+
+
+<section id="pdf-slider">
+    <h2 class="section-title">📖 Rapport UX – Lecture interactive</h2>
+    <div class="slider-container">
+      <div class="slider-track" id="slider-track">
+        <!-- images générées via JS -->
+      </div>
+      <button class="slider-btn prev" onclick="slide(-1)">←</button>
+      <button class="slider-btn next" onclick="slide(1)">→</button>
+    </div>
+  </section>
+  
+  
+
+
+
+
+
+<section id="experience">
+  <h2>Expériences Professionnelles</h2>
+
+  <div class="experience">
+    <h3>UX Designer – Cabinet Thiéblemont (AXA)</h3>
+    <span class="date">2024 – 2025</span>
+    <p>
+      Réalisation d'audits UX, création de maquettes responsive et stratégie de communication digitale
+      pour une agence spécialisée dans l'assurance de personnes.
+    </p>
+  </div>
+
+  <div class="experience">
+    <h3>Designer Graphique – Festival Les Noctambules</h3>
+    <span class="date">2024</span>
+    <p>
+      Direction artistique, conception des supports print et digitaux, mascotte, habillage et déclinaisons UX pour un
+      événement culturel familial.
+    </p>
+  </div>
+
+  <div class="experience">
+    <h3>UX/UI Designer Freelance</h3>
+    <span class="date">2023 – aujourd'hui</span>
+    <p>
+      Réalisation de sites web, audit UX, wireframes et maquettes pour entrepreneurs, TPE/PME et projets associatifs.
+    </p>
+  </div>
+</section>
+
+
+<!--Section projets-->
+
+<section id="projects">
+  <h2>Mes projets</h2>
+
+  <div class="projects-grid">
+    <article class="project-card">
+      <div class="project-header">
+        <h3>Sprint UX </h3>
+        <span class="project-date">Avril-2025</span>
+      </div>
+      <ul class="project-info">
+        <li><strong>🎯 Contexte :</strong> Orienter la plateforme Netflix vers des valeurs plus éthiques, culturelles et bienvieillantes</li>
+        <li><strong>🧠 Mon rôle :</strong> Audit UX, Audit benchmark, focus-group, users interviews, maquettes</li>
+        <li><strong>🛠️ Outils :</strong> Figma,Notion</li>
+      </ul>
+      <a href="#" target="_blank" class="social-btn">
+        <i class="fas fa-arrow-right"></i> Voir le projet
+      </a>
+      
+    </article>
+
+
+
+
+<!--pied de page-->
+
+  <footer>
+
+    <nav class="footer-nav">
+      <a href="#about">À propos</a>
+      <a href="#projects">Projets</a>
+      <a href="#skills">Compétences</a>
+      <a href="#contact">Contact</a>
+      <a href="politique_confidentialite.html">Politique de confidentialité</a>
+    </nav>
+
+    <p class="copyright">© 2025 Faniry Julian Razafindrakoto – UX-UI designer</p>
+  </footer>
+  <script src="portfolio_faniry.js"></script>
+
+
+
+<!--Bouton de téléchargement CV-->
+
+<div class="floating-buttons">
+  <a href="assets/cv_faniry.pdf" download title="Télécharger mon CV" class="cv-btn">
+    <i class="fas fa-download"></i>
+    <span class="tooltip">Télécharger mon CV</span>
+  </a>
+  <button id="scrollToTop" title="Revenir en haut">
+    <i class="fas fa-arrow-up"></i>
+    <span class="tooltip">Revenir en haut</span>
+  </button>
+</div>
+
+<script src="portfolio_faniry.js"></script>
+
+</body>
+</html>
