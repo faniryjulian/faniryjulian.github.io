@@ -1,191 +1,64 @@
-#pdf-slider {
+#simple-slider {
     padding: 2rem;
-    max-width: 100%;
-    overflow: hidden;
-    position: relative;
+    text-align: center;
   }
   
   .slider-container {
-    overflow: hidden;
     position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
   }
   
   .slider-track {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.4s ease-in-out;
+    width: 100%;
   }
   
   .slider-track img {
-    flex-shrink: 0;
+    flex: 0 0 100%;
     width: 100%;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 10px;
-    }
-  
-  .slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #FFD700;
-    border: none;
-    padding: 0.7rem 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 8px;
-    color: #000;
-    transition: background 0.2s;
-  }
-  .slider-btn:hover {
-    background: #ffc400;
-  }
-  
-  .prev { left: 10px; }
-
-  .next { right: 10px; }
-  
-
-  .slider-image {
-    cursor: zoom-in;
-    border-radius: 10px;
     max-height: 90vh;
     object-fit: contain;
-    transition: transform 0.3s ease;
-  }
-  .slider-image:hover {
-    transform: scale(1.02);
   }
   
-  
-#fullscreen-help {
-position: fixed;
-top: 20px;
-left: 50%;
-transform: translateX(-50%);
-background-color: rgba(0,0,0,0.8);
-color: gold;
-padding: 10px 20px;
-border-radius: 10px;
-font-weight: bold;
-font-size: 1rem;
-z-index: 9999;
-display: none;
-pointer-events: none;
-}
-
-#pageCounter {text-align:center; 
-    font-weight: bold; 
-    margin-top: 1rem; 
-    color: gold;
-
-}
-
-/* Version desktop (déjà existante) */
-.slider-btn {
+  .nav-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: #FFD700;
+    background: gold;
     border: none;
-    padding: 0.7rem 1rem;
+    padding: 0.7rem 1.1rem;
     font-size: 1.5rem;
+    border-radius: 8px;
     cursor: pointer;
     z-index: 10;
-    border-radius: 8px;
-    color: #000;
+  }
+  .nav-btn.prev { left: 10px; }
+  .nav-btn.next { right: 10px; }
+  
+  .pagination {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+  }
+  .pagination button {
+    background: rgba(255, 215, 0, 0.7);
+    border: none;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
     transition: background 0.2s;
   }
-  
-  /* ✅ Version mobile : boutons plus petits, discrets */
-  @media (max-width: 768px) {
-    .slider-btn {
-      font-size: 1rem;
-      padding: 0.5rem 0.6rem;
-      background: rgba(255, 215, 0, 0.85);
-      top: auto;
-      bottom: 1rem;
-      transform: none;
-    }
-    .slider-btn.prev {
-      left: 1rem;
-    }
-    .slider-btn.next {
-      right: 1rem;
-    }
+  .pagination button.active {
+    background: #ffd700;
+    color: black;
   }
-  
- /* Mode plein écran sur mobile = affichage vertical style carnet */
-@media (max-width: 768px) {
-    #pdf-slider.fullscreen-mode .slider-track img {
-      width: 100%;
-      height: auto;
-      max-height: 90vh;
-      object-fit: contain;
-      margin: 0 auto;
-    }
-  
-    #pdf-slider.fullscreen-mode {
-      padding: 1rem;
-      background-color: #000;
-    }
-  
-    .slider-btn {
-      font-size: 1rem;
-      padding: 0.5rem 0.6rem;
-      background: rgba(255, 215, 0, 0.85);
-      top: auto;
-      bottom: 1rem;
-      transform: none;
-    }
-  
-    .slider-btn.prev {
-      left: 1rem;
-    }
-  
-    .slider-btn.next {
-      right: 1rem;
-    }
+  .pagination button:hover {
+    background: #ffc400;
   }
-  
-  .slider-track img {
-    touch-action: pinch-zoom;
-    -ms-touch-action: pinch-zoom;
-    -webkit-user-drag: auto;
-    user-select: auto;
-    pointer-events: auto;
-  }
-  
-  @media (max-width: 768px) {
-    .slider-container.vertical-scroll {
-      overflow-y: scroll;
-      overflow-x: hidden;
-      max-height: 100vh;
-      display: block;
-      scroll-snap-type: y mandatory;
-      padding: 0 1rem;
-    }
-  
-    .slider-container.vertical-scroll .slider-track {
-      display: block;
-      transform: none !important; /* annule le translateX */
-      transition: none;
-    }
-  
-    .slider-container.vertical-scroll .slider-track img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 1rem;
-      scroll-snap-align: start;
-      object-fit: contain;
-    }
-  
-    .slider-container.vertical-scroll .slider-btn,
-    .slider-container.vertical-scroll #pageCounter {
-      display: none;
-    }
-  }
-  
- 
   

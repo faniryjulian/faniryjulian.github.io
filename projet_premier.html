@@ -44,26 +44,18 @@
 </div>
 
 
-<section id="pdf-slider">
-    <h2 class="section-title">📖 Rapport UX – Lecture interactive</h2>
-    
+<section id="simple-slider">
     <div class="slider-container">
-      <div class="slider-track" id="slider-track">
-        <!-- images générées via JS -->
+      <div class="slider-track" id="slider-track"></div>
+      <div class="slider-controls">
+        <button class="nav-btn prev" onclick="changeSlide(-1)">←</button>
+        <button class="nav-btn next" onclick="changeSlide(1)">→</button>
       </div>
-      <button class="slider-btn prev" onclick="slide(-1)">←</button>
-      <button class="slider-btn next" onclick="slide(1)">→</button>
-      <p id="pageCounter"></p>
-
+      <div class="pagination" id="pagination"></div>
     </div>
   </section>
   
-  <!-- ✅ Message flottant d'aide pour le mode plein écran -->
-<div id="fullscreen-help">
-🎮 Utilisez les flèches ← → ou swipez pour naviguer
-</div>
-
-
+  
 
 
 

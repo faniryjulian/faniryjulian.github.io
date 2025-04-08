@@ -163,122 +163,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // pdf-slider
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const totalPages = 60;
-  const track = document.getElementById('slider-track');
-  const pageCounter = document.getElementById('pageCounter');
+  const track = document.getElementById("slider-track");
+  const pagination = document.getElementById("pagination");
   let currentIndex = 0;
 
-  if (!track) {
-    console.warn("⚠️ Élément #slider-track introuvable");
-    return;
-  }
-
-  // Génération dynamique des images
+  // Génère les images
   for (let i = 1; i <= totalPages; i++) {
-    const img = document.createElement('img');
+    const img = document.createElement("img");
     img.src = `assets/pdf-slider/page${i}.png`;
     img.alt = `Page ${i}`;
-    img.loading = 'lazy';
-    img.classList.add('slider-image');
-    img.addEventListener("click", () => openFullscreen(document.getElementById('pdf-slider')));
     track.appendChild(img);
+
+    // Bouton pagination
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    btn.addEventListener("click", () => goToSlide(i - 1));
+    pagination.appendChild(btn);
   }
 
-  function updatePageCounter() {
-    if (pageCounter) {
-      pageCounter.textContent = `Page ${currentIndex + 1} / ${totalPages}`;
-    }
+  const slides = track.querySelectorAll("img");
+  const buttons = pagination.querySelectorAll("button");
+
+  function updateSlider() {
+    const width = slides[0].clientWidth;
+    track.style.transform = `translateX(-${currentIndex * width}px)`;
+
+    buttons.forEach((b, i) => {
+      b.classList.toggle("active", i === currentIndex);
+    });
   }
 
-  // Fonction navigation horizontale
-  window.slide = function (direction) {
-    const slides = document.querySelectorAll('#slider-track img');
-    if (!slides.length) return;
-
-    const slideWidth = slides[0].getBoundingClientRect().width;
+  window.changeSlide = function (direction) {
     currentIndex += direction;
-
-    if (currentIndex >= slides.length) currentIndex = 0;
-    if (currentIndex < 0) currentIndex = slides.length - 1;
-
-    track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
-    updatePageCounter();
+    if (currentIndex < 0) currentIndex = totalPages - 1;
+    if (currentIndex >= totalPages) currentIndex = 0;
+    updateSlider();
   };
 
-  // Plein écran avec gestion du scroll vertical mobile
-  function openFullscreen(el) {
-    if (!el) return;
-
-    const isMobile = window.innerWidth <= 768;
-
-    // Active fullscreen
-    if (el.requestFullscreen) el.requestFullscreen();
-    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-    else if (el.msRequestFullscreen) el.msRequestFullscreen();
-
-    el.classList.add("fullscreen-mode");
-
-    if (isMobile) {
-      enableVerticalScrollMode();
-    }
-
-    // Événement de sortie du plein écran
-    document.addEventListener("fullscreenchange", () => {
-      if (!document.fullscreenElement) {
-        el.classList.remove("fullscreen-mode");
-        disableVerticalScrollMode();
-      }
-    });
-
-    showFullscreenHelp(); // Aide utilisateur
+  function goToSlide(index) {
+    currentIndex = index;
+    updateSlider();
   }
 
-  // Scroll vertical mobile
-  function enableVerticalScrollMode() {
-    const container = document.querySelector('.slider-container');
-    if (container) {
-      container.classList.add("vertical-scroll");
-    }
-  }
-
-  function disableVerticalScrollMode() {
-    const container = document.querySelector('.slider-container');
-    if (container) {
-      container.classList.remove("vertical-scroll");
-    }
-  }
-
-  // Swipe mobile
-  let startX = 0;
-  track.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-  track.addEventListener("touchend", (e) => {
-    const endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) slide(1);
-    else if (endX - startX > 50) slide(-1);
-  });
-
-  // Navigation clavier
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowRight") slide(1);
-    if (e.key === "ArrowLeft") slide(-1);
-  });
-
-  // Aide flottante fullscreen
-  function showFullscreenHelp() {
-    const help = document.getElementById('fullscreen-help');
-    if (!help) return;
-    help.style.display = 'block';
-    setTimeout(() => {
-      help.style.display = 'none';
-    }, 3000);
-  }
-
-  track.style.transition = "transform 0.5s ease-in-out";
-  updatePageCounter();
+  window.addEventListener("resize", updateSlider);
+  updateSlider();
 });
+
 
 
 
