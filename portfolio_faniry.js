@@ -162,8 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-//pdf-slider
+// pdf-slider
 document.addEventListener("DOMContentLoaded", function () {
   const totalPages = 60;
   const track = document.getElementById('slider-track');
@@ -192,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Fonction navigation
+  // Fonction navigation horizontale
   window.slide = function (direction) {
     const slides = document.querySelectorAll('#slider-track img');
     if (!slides.length) return;
@@ -207,29 +206,48 @@ document.addEventListener("DOMContentLoaded", function () {
     updatePageCounter();
   };
 
-  // Zoom fullscreen au clic sur une image
+  // Plein écran avec gestion du scroll vertical mobile
   function openFullscreen(el) {
     if (!el) return;
-  
+
+    const isMobile = window.innerWidth <= 768;
+
     // Active fullscreen
     if (el.requestFullscreen) el.requestFullscreen();
     else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
     else if (el.msRequestFullscreen) el.msRequestFullscreen();
-  
-    // Ajoute une classe pour adapter le style fullscreen
+
     el.classList.add("fullscreen-mode");
-  
-    // Enlève la classe quand on quitte le fullscreen
+
+    if (isMobile) {
+      enableVerticalScrollMode();
+    }
+
+    // Événement de sortie du plein écran
     document.addEventListener("fullscreenchange", () => {
       if (!document.fullscreenElement) {
         el.classList.remove("fullscreen-mode");
+        disableVerticalScrollMode();
       }
     });
-  
-    showFullscreenHelp(); // Affiche le message flottant
+
+    showFullscreenHelp(); // Aide utilisateur
   }
-  
-  
+
+  // Scroll vertical mobile
+  function enableVerticalScrollMode() {
+    const container = document.querySelector('.slider-container');
+    if (container) {
+      container.classList.add("vertical-scroll");
+    }
+  }
+
+  function disableVerticalScrollMode() {
+    const container = document.querySelector('.slider-container');
+    if (container) {
+      container.classList.remove("vertical-scroll");
+    }
+  }
 
   // Swipe mobile
   let startX = 0;
@@ -248,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.key === "ArrowLeft") slide(-1);
   });
 
-  // Affiche une aide flottante
+  // Aide flottante fullscreen
   function showFullscreenHelp() {
     const help = document.getElementById('fullscreen-help');
     if (!help) return;
@@ -262,6 +280,22 @@ document.addEventListener("DOMContentLoaded", function () {
   updatePageCounter();
 });
 
+// Gère le bouton de sortie fullscreen
+const exitBtn = document.getElementById("exitFullscreenBtn");
+if (exitBtn) {
+  exitBtn.addEventListener("click", () => {
+    if (document.exitFullscreen) document.exitFullscreen();
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+    else if (document.msExitFullscreen) document.msExitFullscreen();
+  });
+}
 
-
+// Affiche ou cache le bouton automatiquement
+document.addEventListener("fullscreenchange", () => {
+  if (document.fullscreenElement) {
+    exitBtn.style.display = "block";
+  } else {
+    exitBtn.style.display = "none";
+  }
+});
 
