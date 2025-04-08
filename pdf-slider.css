@@ -114,4 +114,29 @@
     }
   }
   
+  @media (max-width: 768px) {
+    .nav-btn {
+      font-size: 1rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      bottom: 4rem;
+      top: auto;
+      transform: none;
+    }
+  
+    .nav-btn.prev {
+      position: absolute;
+      left: 1rem;
+    }
+  
+    .nav-btn.next {
+      position: absolute;
+      right: 1rem;
+    }
+  
+    .slider-track img {
+      max-height: 75vh;
+    }
+  }
+  
   
