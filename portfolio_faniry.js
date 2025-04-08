@@ -120,37 +120,45 @@ function doPost(e) {
 }
 
 //submit form
-const form = document.getElementById('contactForm');
-const success = document.getElementById('formSuccess');
-const loader = document.getElementById('formLoader');
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  const loader = document.getElementById('formLoader'); // Optionnel : vérifie qu'il existe dans ton HTML
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-  const formData = new FormData(form);
+  if (!form) {
+    console.error("❌ Le formulaire #contactForm est introuvable.");
+    return;
+  }
 
-  loader.classList.add('show');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-  fetch(form.action, {
-    method: 'POST',
-    body: formData,
-  })
-  .then(response => {
-    loader.classList.remove('show');
-    if (response.ok) {
-      form.reset();
-      success.classList.add('show');
-      setTimeout(() => {
-        success.classList.remove('show');
-      }, 4000);
-    } else {
-      alert("Une erreur est survenue. Veuillez réessayer.");
-    }
-  })
-  .catch(error => {
-    loader.classList.remove('show');
-    alert("Erreur : " + error.message);
+    const formData = new FormData(form);
+    if (loader) loader.classList.add('show');
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+    })
+      .then(response => {
+        if (loader) loader.classList.remove('show');
+        if (response.ok) {
+          form.reset();
+          success.classList.add('show');
+          setTimeout(() => {
+            success.classList.remove('show');
+          }, 4000);
+        } else {
+          alert("Une erreur est survenue. Veuillez réessayer.");
+        }
+      })
+      .catch(error => {
+        if (loader) loader.classList.remove('show');
+        alert("Erreur : " + error.message);
+      });
   });
 });
+
 
 
 
