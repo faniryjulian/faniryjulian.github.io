@@ -46,6 +46,7 @@
 
   .next { right: 10px; }
   
+
   .slider-image {
     cursor: zoom-in;
     border-radius: 10px;
@@ -57,3 +58,26 @@
     transform: scale(1.02);
   }
   
+  
+#fullscreen-help {
+position: fixed;
+top: 20px;
+left: 50%;
+transform: translateX(-50%);
+background-color: rgba(0,0,0,0.8);
+color: gold;
+padding: 10px 20px;
+border-radius: 10px;
+font-weight: bold;
+font-size: 1rem;
+z-index: 9999;
+display: none;
+pointer-events: none;
+}
+
+#pageCounter {text-align:center; 
+    font-weight: bold; 
+    margin-top: 1rem; 
+    color: gold;
+
+}

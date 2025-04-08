@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
     img.alt = `Page ${i}`;
     img.loading = 'lazy';
     img.classList.add('slider-image');
-    img.addEventListener("click", () => openFullscreen(img)); // 👈 Zoom au clic
+    img.addEventListener("click", () => openFullscreen(img));
     track.appendChild(img);
   }
 
@@ -192,26 +192,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Fonction navigation
   window.slide = function (direction) {
     const slides = document.querySelectorAll('#slider-track img');
     if (!slides.length) return;
 
-    const slideWidth = slides[0].clientWidth;
-
+    const slideWidth = slides[0].getBoundingClientRect().width;
     currentIndex += direction;
 
-    if (currentIndex >= slides.length) currentIndex = 0; // 👈 retour au début
-    if (currentIndex < 0) currentIndex = slides.length - 1; // 👈 aller à la fin
+    if (currentIndex >= slides.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = slides.length - 1;
 
     track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
     updatePageCounter();
   };
 
-  // Fullscreen zoom
+  // Zoom fullscreen au clic sur une image
   function openFullscreen(el) {
     if (el.requestFullscreen) el.requestFullscreen();
     else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
     else if (el.msRequestFullscreen) el.msRequestFullscreen();
+
+    showFullscreenHelp(); // 👈 affiche l'aide
   }
 
   // Swipe mobile
@@ -219,18 +221,31 @@ document.addEventListener("DOMContentLoaded", function () {
   track.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
   });
-
   track.addEventListener("touchend", (e) => {
-    let endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) slide(1);     // swipe gauche
-    else if (endX - startX > 50) slide(-1); // swipe droite
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) slide(1);
+    else if (endX - startX > 50) slide(-1);
   });
 
-  // Init compteur + animation
+  // Navigation clavier
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") slide(1);
+    if (e.key === "ArrowLeft") slide(-1);
+  });
+
+  // Affiche une aide flottante
+  function showFullscreenHelp() {
+    const help = document.getElementById('fullscreen-help');
+    if (!help) return;
+    help.style.display = 'block';
+    setTimeout(() => {
+      help.style.display = 'none';
+    }, 3000);
+  }
+
   track.style.transition = "transform 0.5s ease-in-out";
   updatePageCounter();
 });
-
 
 
 
