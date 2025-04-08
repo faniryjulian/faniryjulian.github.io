@@ -187,33 +187,5 @@ pointer-events: none;
     }
   }
   
-  #exitFullscreenBtn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 16px;
-    font-size: 0.95rem;
-    background-color: gold;
-    color: black;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  
-  #exitFullscreenBtn:hover {
-    background-color: #ffc400;
-  }
-  
-  @media (max-width: 768px) {
-    #exitFullscreenBtn {
-      font-size: 0.85rem;
-      padding: 8px 12px;
-      bottom: 15px;
-      right: 15px;
-    }
-  }
+ 
   

@@ -280,21 +280,6 @@ document.addEventListener("DOMContentLoaded", function () {
   updatePageCounter();
 });
 
-// Gère le bouton de sortie fullscreen
-const exitBtn = document.getElementById("exitFullscreenBtn");
 
-if (exitBtn) {
-  exitBtn.addEventListener("click", () => {
-    if (document.exitFullscreen) document.exitFullscreen();
-    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-    else if (document.msExitFullscreen) document.msExitFullscreen();
-  });
-
-  document.addEventListener("fullscreenchange", () => {
-    exitBtn.style.display = document.fullscreenElement ? "block" : "none";
-  });
-} else {
-  console.warn("⚠️ Bouton #exitFullscreenBtn non trouvé dans le DOM.");
-}
 
 
