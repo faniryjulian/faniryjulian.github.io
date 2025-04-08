@@ -22,8 +22,7 @@
     height: auto;
     object-fit: contain;
     border-radius: 10px;
-    loading: lazy;
-  }
+    }
   
   .slider-btn {
     position: absolute;
@@ -44,5 +43,6 @@
   }
   
   .prev { left: 10px; }
+
   .next { right: 10px; }
   
