@@ -180,12 +180,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const slides = track.querySelectorAll("img");
+  const pageIndicator = document.getElementById("page-indicator");
+
 
   function isMobile() {
     return window.innerWidth <= 768;
   }
 
   function goToPage(index) {
+    if (pageIndicator) {
+      pageIndicator.textContent = `Page ${currentIndex + 1} / ${totalPages}`;
+    }
+    
     if (index < 0 || index >= totalPages) return;
     currentIndex = index;
 
@@ -222,3 +228,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   goToPage(currentIndex);
 });
+
+// Détecte la page visible au scroll (mobile)
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const index = [...slides].indexOf(entry.target);
+        if (index !== -1) {
+          currentIndex = index;
+          if (pageIndicator) {
+            pageIndicator.textContent = `Page ${currentIndex + 1} / ${totalPages}`;
+          }
+        }
+      }
+    });
+  }, {
+    threshold: 0.6
+  });
+
+  slides.forEach(img => observer.observe(img));
+}
