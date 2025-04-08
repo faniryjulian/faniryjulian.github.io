@@ -159,6 +159,17 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+//form math captcha
+document.addEventListener("DOMContentLoaded", function () {
+  const a = Math.floor(Math.random() * 5) + 1;
+  const b = Math.floor(Math.random() * 5) + 1;
+  const expected = a + b;
+
+  document.getElementById("a").textContent = a;
+  document.getElementById("b").textContent = b;
+  document.getElementById("captchaExpected").value = expected;
+});
+
 
 
 
