@@ -232,29 +232,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// Plein écran sur tout le slider
-const fullscreenBtn = document.getElementById('fullscreenBtn');
-if (fullscreenBtn) {
-  fullscreenBtn.addEventListener("click", () => {
-    const container = document.querySelector('.slider-container');
-    if (!container) return;
 
-    if (
-      document.fullscreenElement ||
-      document.webkitFullscreenElement ||
-      document.msFullscreenElement
-    ) {
-      // Quitter le plein écran
-      if (document.exitFullscreen) document.exitFullscreen();
-      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-      else if (document.msExitFullscreen) document.msExitFullscreen();
-    } else {
-      // Activer le plein écran
-      if (container.requestFullscreen) container.requestFullscreen();
-      else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
-      else if (container.msRequestFullscreen) container.msRequestFullscreen();
-    }
-  });
-}
 
 
