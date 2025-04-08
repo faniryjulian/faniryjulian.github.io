@@ -156,12 +156,17 @@ form.addEventListener('submit', function (e) {
 
 
 //pdf-slider
-
 document.addEventListener("DOMContentLoaded", function () {
-  const totalPages = 60; // ✅ mis à jour ici
+  const totalPages = 60;
   const track = document.getElementById('slider-track');
   let currentIndex = 0;
 
+  if (!track) {
+    console.warn("Élément #slider-track introuvable");
+    return;
+  }
+
+  // Génération dynamique des images
   for (let i = 1; i <= totalPages; i++) {
     const img = document.createElement('img');
     img.src = `assets/pdf-slider/page${i}.png`;
@@ -170,6 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
     track.appendChild(img);
   }
 
+  // Fonction de navigation
   window.slide = function (direction) {
     const slides = document.querySelectorAll('#slider-track img');
     const slideWidth = slides[0].clientWidth;
