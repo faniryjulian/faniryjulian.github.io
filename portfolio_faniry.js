@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
     img.alt = `Page ${i}`;
     img.loading = 'lazy';
     img.classList.add('slider-image');
-    img.addEventListener("click", () => openFullscreen(img));
+    img.addEventListener("click", () => openFullscreen(document.getElementById('pdf-slider')));
     track.appendChild(img);
   }
 
@@ -212,9 +212,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (el.requestFullscreen) el.requestFullscreen();
     else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
     else if (el.msRequestFullscreen) el.msRequestFullscreen();
-
-    showFullscreenHelp(); // 👈 affiche l'aide
+  
+    showFullscreenHelp(); // Affiche le message flottant
   }
+  
 
   // Swipe mobile
   let startX = 0;
