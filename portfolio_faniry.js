@@ -211,6 +211,26 @@ document.addEventListener("DOMContentLoaded", () => {
   updateSlider();
 });
 
+// Aller à une page via input
+window.goToPageInput = function () {
+  const input = document.getElementById("pageInput");
+  let page = parseInt(input.value);
+
+  if (isNaN(page) || page < 1 || page > totalPages) {
+    alert(`Merci d’entrer un nombre entre 1 et ${totalPages}`);
+    return;
+  }
+
+  currentIndex = page - 1;
+  updateSlider();
+};
+
+// ✅ Entrée clavier
+document.getElementById("pageInput")?.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    goToPageInput();
+  }
+});
 
 
 
