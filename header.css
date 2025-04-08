@@ -106,7 +106,7 @@ header {
     height: 3px;
     background-color: var(--color-primary);
     border-radius: 3px;
-    transition: 0.3s ease;
+    transition: 0.05s ease;
   }
 
 /* Position des 3 barres */
