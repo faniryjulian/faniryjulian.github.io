@@ -209,12 +209,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Zoom fullscreen au clic sur une image
   function openFullscreen(el) {
+    if (!el) return;
+  
+    // Active fullscreen
     if (el.requestFullscreen) el.requestFullscreen();
     else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
     else if (el.msRequestFullscreen) el.msRequestFullscreen();
   
+    // Ajoute une classe pour adapter le style fullscreen
+    el.classList.add("fullscreen-mode");
+  
+    // Enlève la classe quand on quitte le fullscreen
+    document.addEventListener("fullscreenchange", () => {
+      if (!document.fullscreenElement) {
+        el.classList.remove("fullscreen-mode");
+      }
+    });
+  
     showFullscreenHelp(); // Affiche le message flottant
   }
+  
   
 
   // Swipe mobile

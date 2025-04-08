@@ -81,3 +81,71 @@ pointer-events: none;
     color: gold;
 
 }
+
+/* Version desktop (déjà existante) */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #FFD700;
+    border: none;
+    padding: 0.7rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 8px;
+    color: #000;
+    transition: background 0.2s;
+  }
+  
+  /* ✅ Version mobile : boutons plus petits, discrets */
+  @media (max-width: 768px) {
+    .slider-btn {
+      font-size: 1rem;
+      padding: 0.5rem 0.6rem;
+      background: rgba(255, 215, 0, 0.85);
+      top: auto;
+      bottom: 1rem;
+      transform: none;
+    }
+    .slider-btn.prev {
+      left: 1rem;
+    }
+    .slider-btn.next {
+      right: 1rem;
+    }
+  }
+  
+ /* Mode plein écran sur mobile = affichage vertical style carnet */
+@media (max-width: 768px) {
+    #pdf-slider.fullscreen-mode .slider-track img {
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+  
+    #pdf-slider.fullscreen-mode {
+      padding: 1rem;
+      background-color: #000;
+    }
+  
+    .slider-btn {
+      font-size: 1rem;
+      padding: 0.5rem 0.6rem;
+      background: rgba(255, 215, 0, 0.85);
+      top: auto;
+      bottom: 1rem;
+      transform: none;
+    }
+  
+    .slider-btn.prev {
+      left: 1rem;
+    }
+  
+    .slider-btn.next {
+      right: 1rem;
+    }
+  }
+  
