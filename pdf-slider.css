@@ -149,3 +149,11 @@ pointer-events: none;
     }
   }
   
+  .slider-track img {
+    touch-action: pinch-zoom;
+    -ms-touch-action: pinch-zoom;
+    -webkit-user-drag: auto;
+    user-select: auto;
+    pointer-events: auto;
+  }
+  
