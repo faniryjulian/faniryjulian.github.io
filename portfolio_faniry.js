@@ -148,10 +148,10 @@ form.addEventListener('submit', function (e) {
   })
   .catch(error => {
     loader.classList.remove('show');
-    alert("Une erreur est survenue. Veuillez réessayer.");
-    console.error(error);
+    alert("Erreur : " + error.message);
   });
 });
+
 
 
 
