@@ -214,15 +214,12 @@
       width: 100%;
       height: auto;
       max-height: unset;
-      margin-bottom: 1rem;
+      margin-bottom: 0;
       object-fit: contain;
       scroll-snap-align: start;
     }
   
-    .nav-btn {
-      display: none;
-    }
-  
+    .nav-btn,
     .pagination-desktop {
       display: none;
     }
