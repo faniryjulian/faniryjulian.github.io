@@ -167,10 +167,11 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const totalPages = 60;
   const track = document.getElementById('slider-track');
+  const pageCounter = document.getElementById('pageCounter');
   let currentIndex = 0;
 
   if (!track) {
-    console.warn("Élément #slider-track introuvable");
+    console.warn("⚠️ Élément #slider-track introuvable");
     return;
   }
 
@@ -180,20 +181,54 @@ document.addEventListener("DOMContentLoaded", function () {
     img.src = `assets/pdf-slider/page${i}.png`;
     img.alt = `Page ${i}`;
     img.loading = 'lazy';
+    img.classList.add('slider-image');
+    img.addEventListener("click", () => openFullscreen(img)); // 👈 Zoom au clic
     track.appendChild(img);
   }
 
-  // Fonction de navigation
+  function updatePageCounter() {
+    if (pageCounter) {
+      pageCounter.textContent = `Page ${currentIndex + 1} / ${totalPages}`;
+    }
+  }
+
   window.slide = function (direction) {
     const slides = document.querySelectorAll('#slider-track img');
+    if (!slides.length) return;
+
     const slideWidth = slides[0].clientWidth;
 
     currentIndex += direction;
-    if (currentIndex < 0) currentIndex = 0;
-    if (currentIndex >= slides.length) currentIndex = slides.length - 1;
+
+    if (currentIndex >= slides.length) currentIndex = 0; // 👈 retour au début
+    if (currentIndex < 0) currentIndex = slides.length - 1; // 👈 aller à la fin
 
     track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+    updatePageCounter();
   };
+
+  // Fullscreen zoom
+  function openFullscreen(el) {
+    if (el.requestFullscreen) el.requestFullscreen();
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+    else if (el.msRequestFullscreen) el.msRequestFullscreen();
+  }
+
+  // Swipe mobile
+  let startX = 0;
+  track.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  track.addEventListener("touchend", (e) => {
+    let endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) slide(1);     // swipe gauche
+    else if (endX - startX > 50) slide(-1); // swipe droite
+  });
+
+  // Init compteur + animation
+  track.style.transition = "transform 0.5s ease-in-out";
+  updatePageCounter();
 });
 
 

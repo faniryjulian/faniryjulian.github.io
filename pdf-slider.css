@@ -46,3 +46,14 @@
 
   .next { right: 10px; }
   
+  .slider-image {
+    cursor: zoom-in;
+    border-radius: 10px;
+    max-height: 90vh;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+  .slider-image:hover {
+    transform: scale(1.02);
+  }
+  
