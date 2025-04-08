@@ -166,33 +166,21 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", () => {
   const totalPages = 60;
   const track = document.getElementById("slider-track");
-  const pagination = document.getElementById("pagination");
   let currentIndex = 0;
 
-  // Génère les images
+  // Génère dynamiquement les images
   for (let i = 1; i <= totalPages; i++) {
     const img = document.createElement("img");
     img.src = `assets/pdf-slider/page${i}.png`;
     img.alt = `Page ${i}`;
     track.appendChild(img);
-
-    // Bouton pagination
-    const btn = document.createElement("button");
-    btn.textContent = i;
-    btn.addEventListener("click", () => goToSlide(i - 1));
-    pagination.appendChild(btn);
   }
 
   const slides = track.querySelectorAll("img");
-  const buttons = pagination.querySelectorAll("button");
 
   function updateSlider() {
     const width = slides[0].clientWidth;
     track.style.transform = `translateX(-${currentIndex * width}px)`;
-
-    buttons.forEach((b, i) => {
-      b.classList.toggle("active", i === currentIndex);
-    });
   }
 
   window.changeSlide = function (direction) {
@@ -202,36 +190,28 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSlider();
   };
 
-  function goToSlide(index) {
-    currentIndex = index;
+  window.goToPageInput = function () {
+    const input = document.getElementById("pageInput");
+    const page = parseInt(input.value);
+
+    if (isNaN(page) || page < 1 || page > totalPages) {
+      alert(`Merci d’entrer un numéro entre 1 et ${totalPages}`);
+      return;
+    }
+
+    currentIndex = page - 1;
     updateSlider();
-  }
+  };
+
+  // Appuyer sur Entrée fonctionne aussi
+  document.getElementById("pageInput")?.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      goToPageInput();
+    }
+  });
 
   window.addEventListener("resize", updateSlider);
   updateSlider();
 });
-
-// Aller à une page via input
-window.goToPageInput = function () {
-  const input = document.getElementById("pageInput");
-  let page = parseInt(input.value);
-
-  if (isNaN(page) || page < 1 || page > totalPages) {
-    alert(`Merci d’entrer un nombre entre 1 et ${totalPages}`);
-    return;
-  }
-
-  currentIndex = page - 1;
-  updateSlider();
-};
-
-// ✅ Entrée clavier
-document.getElementById("pageInput")?.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") {
-    goToPageInput();
-  }
-});
-
-
 
 
