@@ -123,7 +123,15 @@ function doPost(e) {
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById('contactForm');
   const success = document.getElementById('formSuccess');
-  const loader = document.getElementById('formLoader'); // Optionnel : vérifie qu'il existe dans ton HTML
+  const loader = document.getElementById('formLoader');
+
+  // Génère le captcha mathématique
+  const a = Math.floor(Math.random() * 5) + 1;
+  const b = Math.floor(Math.random() * 5) + 1;
+  const expected = a + b;
+  document.getElementById("a").textContent = a;
+  document.getElementById("b").textContent = b;
+  document.getElementById("captchaExpected").value = expected;
 
   if (!form) {
     console.error("❌ Le formulaire #contactForm est introuvable.");
@@ -132,6 +140,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+
+    // Vérifie la réponse du captcha
+    const userAnswer = parseInt(document.getElementById("captchaAnswer").value, 10);
+    const expectedAnswer = parseInt(document.getElementById("captchaExpected").value, 10);
+
+    if (userAnswer !== expectedAnswer) {
+      alert("🧮 La réponse au captcha est incorrecte. Veuillez réessayer.");
+      return;
+    }
 
     const formData = new FormData(form);
     if (loader) loader.classList.add('show');
@@ -159,16 +176,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-//form math captcha
-document.addEventListener("DOMContentLoaded", function () {
-  const a = Math.floor(Math.random() * 5) + 1;
-  const b = Math.floor(Math.random() * 5) + 1;
-  const expected = a + b;
-
-  document.getElementById("a").textContent = a;
-  document.getElementById("b").textContent = b;
-  document.getElementById("captchaExpected").value = expected;
-});
 
 
 
