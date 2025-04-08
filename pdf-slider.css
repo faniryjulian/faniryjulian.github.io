@@ -115,28 +115,36 @@
   }
   
   @media (max-width: 768px) {
-    .nav-btn {
-      font-size: 1rem;
-      padding: 0.4rem 0.6rem;
-      border-radius: 6px;
-      bottom: 4rem;
-      top: auto;
-      transform: none;
+    .slider-container {
+      max-height: 90vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
     }
   
-    .nav-btn.prev {
-      position: absolute;
-      left: 1rem;
-    }
-  
-    .nav-btn.next {
-      position: absolute;
-      right: 1rem;
+    .slider-track {
+      display: block;
+      transform: none !important;
+      transition: none !important;
     }
   
     .slider-track img {
-      max-height: 75vh;
+      width: 100%;
+      height: auto;
+      max-height: unset;
+      margin-bottom: 1rem;
+    }
+  
+    .pagination {
+      display: none;
     }
   }
   
+  
+  @media (max-width: 768px) {
+    .nav-btn {
+      display: none !important;
+    }
+  }
   
